@@ -1,0 +1,42 @@
+{
+   "leftAlign": [
+      {
+         "url": "widgets",
+         "label": "✂️   Widgets"
+      }
+   ],
+   "rightAlign": [
+      {
+         "url": "/admin",
+         "label": "⚙️   Administration",
+         "requiredPermissionToDisplaySilently": ["HABILITATIONS","ROLES"]
+      },
+      {
+         "url": "/aide",
+         "label": "❓   Aide"
+      }
+   ],
+   "connectedMenu": {
+      "label": "Mon compte",
+      "mustBeConnectedToDisplay": true,
+      "childs": [
+        {
+           "label": "  ❕    Signaler un bug",
+           "href": "mailto:bzh-incidents-appli@enedis.fr?subject=Bug sur l'application [[app]]&body=Bonjour,%0A%0AJe subis actuellement un bug sur l'application [[app]].%0A%0ALe bug n'est pas bloquant.%0ALe bug est bloquant pour mon metier, dans la mesure où ...%0A%0AJ'appartiens à l'agence ... de la DR ..., j'occupe le poste de ... %0ASur l'application j'ai le rôle de ... %0A%0AConcernant le bug :%0A%0AVoici les étapes pour le reproduire :%0A...%0A%0ALe resultat obtenu acutellement est le suivant : ... %0ALe resultat attendu serait : ... %0A%0AVoici une capture d'ecran (Appuyez sur la Touche Windows+ Shift + S) de ce qui provoque le bug :%0A... %0A%0AVoici une capture d'ecran (Appuyez sur la Touche Windows+ Shift + S) du bug :%0A...%0A%0AJe vous remercie par avance.%0ACordialement."
+        },
+        {
+           "label": "⚙️   Proposer une évolution",
+           "href": "mailto:bzh-incidents-appli@enedis.fr?subject=Demande d'évolution concernant l'application [[app]]&body=Bonjour,%0A%0AJe voudrais vous proposer l'ajout d'une fonctionnalité sur l'application [[app]].%0A%0AJ'appartiens à l'agence ... de la DR ..., j'occupe le poste de ... %0ASur l'application j'ai le rôle de ... %0A%0AJe vous propose de ...%0A%0AVoici en quoi ma proposition serait bénéfique : %0A(préciser les gains de productivité/temps/moyen...)%0A(préciser qui serait concerné par votre proposition...)%0A(préciser quelles autres applications seraient concernées)%0A%0AVoici une capture d'écran (Appuyez sur la Touche Windows+ Shift + S) :%0A...%0A%0AJe vous remercie par avance.%0ACordialement.%0A"
+        },
+         {
+            "label": "❌   Deconnexion",
+            "url": "/logout"
+         }
+      ]
+   },
+   "disconnectedMenu": {
+      "url": "/login",
+      "label": "🔑    Me connecter",
+      "mustBeDisconnectedToDisplay": true
+   }
+}

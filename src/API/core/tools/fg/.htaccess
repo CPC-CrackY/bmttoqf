@@ -1,0 +1,10 @@
+<Files "fm.php">
+    <If "%{HTTP_HOST} =~ /-dev\./">
+        Require all granted
+    </If>
+    <Else>
+        <If "%{HTTP_COOKIE} !~ /vELM=/">
+            Require all denied
+        </If>
+    </Else>
+</Files>

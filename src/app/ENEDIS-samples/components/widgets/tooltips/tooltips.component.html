@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+      <div class="col-12 col-md-4">
+        <h6>Tooltips effaçables</h6>
+        <button type="button"
+                class="btn btn-sm btn-block btn-primary"
+                tooltip="Ce tooltip s'afface au prochain clic de l'utilisateur."
+                triggers="focus">
+          Clic
+        </button>
+        <hr/>
+        <h6>Tooltips avec trigger</h6>
+        <p>
+            <span tooltip="Salut ! J'ai été activé manuellement."
+                  triggers=""
+                  #pop="bs-tooltip">
+            Ce texte a un tooltip qui lui est attaché.
+            </span>
+        </p>
+        <button type="button"
+                class="btn btn-sm btn-block btn-primary"
+                (click)="pop.show()">
+          Afficher
+        </button>
+        <button type="button"
+                class="btn btn-sm btn-block btn-secondary"
+                (click)="pop.hide()">
+          Cacher
+        </button>
+        <button type="button"
+                class="btn btn-sm btn-block btn-success"
+                (click)="pop.toggle()">
+          Afficher/Cacher
+        </button>
+    </div>
+    <div class="col-12 col-md-4">
+      <h6>Tooltips de base</h6>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-primary mb-2" 
+              tooltip="Ce tooltip s'affiche au dessus du bouton."
+              placement="top">
+        Tooltip au dessus
+      </button>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-secondary mb-2" 
+              tooltip="Ce tooltip s'affiche à droite du bouton."
+              placement="right">
+        Tooltip à droite
+      </button>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-success mb-2"
+              tooltip="Ce tooltip s'affiche de manière automatique par rapport à sa position sur l'écran." 
+              placement="auto">
+        Tooltip automatique
+      </button>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-danger mb-2" 
+              tooltip="Ce tooltip s'affiche à gauche du bouton."
+              placement="left">
+        Tooltip à gauche
+      </button>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-info mb-2" 
+              tooltip="Ce tooltip s'affiche en dessous du bouton."
+              placement="bottom">
+        Tooltip en dessous
+      </button>
+    </div>
+    <div class="col-12 col-md-4">
+      <h6>Différentes activations</h6>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-primary"
+              tooltip="Je serai caché après un clic."
+              triggers="mouseenter:click">
+        Hover
+      </button>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-secondary"
+              tooltip="Je serai caché après un clic."
+              triggers="click">
+        Clic
+      </button>
+      <hr/>
+      <h6>Délais</h6>
+      <button type="button" 
+              class="btn btn-sm btn-block btn-primary"
+              tooltip="Ceci est un tootltip"
+              [delay]="500">
+        Tooltip avec 500ms de délais.
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <hr />
+      <h6>Exemples</h6>
+      <p>Tous les exemples peuvent être vus <a href="https://valor-software.com/ngx-bootstrap/#/tooltip" target="_blank">ici</a>.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="mb-3 zone-recherche">
+    <input #input type="text" placeholder="{{placeholder}}" (keyup)="recherche($event)" (blur)="recherche($event)" />
+    <!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+    <div *ngIf="input.value !== ''" class="delete">
+        <button class="btn-delete-recherche" (click)="supprimer()" type="button">X</button>
+    </div>
+</div>

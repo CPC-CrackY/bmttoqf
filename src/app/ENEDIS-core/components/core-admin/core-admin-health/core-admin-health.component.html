@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="metrics-cards">
+            <div class="card">
+                <h3>CPU</h3>
+                <app-gauge [value]="latestMetrics?.cpu_percent" [color]="[
+            [0.7999, '#41A57D'],
+            [0.95, '#FFC328'],
+            [1, '#E10028']
+          ]" [width]="200" [height]="200"></app-gauge>
+            </div>
+            <div class="card">
+                <h3>Mémoire</h3>
+                <app-gauge [value]="latestMetrics?.memory_percent" [color]="[
+                [0.7999, '#41A57D'],
+                [0.95, '#FFC328'],
+                [1, '#E10028']
+              ]" [width]="200" [height]="200"></app-gauge>
+            </div>
+            <div class="card">
+                <h3>Disque</h3>
+                <app-gauge [value]="latestMetrics?.disk_percent" [color]="[
+                [0.7999, '#41A57D'],
+                [0.95, '#FFC328'],
+                [1, '#E10028']
+              ]" [width]="200" [height]="200"></app-gauge>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>Utilisation du serveur {{ period === 'today' ? 'aujourd\'hui' : 'ces 3 derniers mois' }}</h3>
+            <button class="btn btn-xs" (click)="togglePeriod()">
+                {{ period === 'today' ? 'Voir ces 3 derniers mois':'Voir aujourd\'hui' }}
+            </button><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 col-lg-4" id="cpuChart"></div>
+        <div class="col-6 col-lg-4" id="memChart"></div>
+        <div class="col-6 col-lg-4" id="diskChart"></div>
+    </div>
+    <div class="alert alert-info" *ngIf="chartData === null">
+        Si les graphiques si-dessus sont vides :<br>
+        <ul>
+            <li>Ajoutez la ligne suivante à la crontab :<br>
+                <span class="console">
+                    * 07-18 * * 1-5 cd /var/www/html/API/core && php ./core_metrics.php > /dev/fifo-stdout 2>
+                    /dev/fifo-stderr
+                </span>
+            </li>
+            <li>Si les graphiques sont toujours vides,
+                demandez l'activation de la crontab à l'équipe en utilisant le
+                <a target="_blank"
+                    href="https://spice.service-now.com/spice?id=sc_cat_item&sys_id=9493027d47584a141c16b7da216d43ab">formulaire
+                    SPICE</a>.
+            </li>
+        </ul>
+    </div>
+
+</div>

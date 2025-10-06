@@ -1,0 +1,31 @@
+.grantersContainer {
+    background-color: var(--marron_200);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+h3 {
+    display: block;
+    color: var(--marron_500);
+    margin-bottom:15px;
+}
+
+.granters {
+    display: inline-block;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.granter {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid var(--marron_300);
+    color: var(--marron_700);
+    padding : 5px 0px;
+}
+
+a {
+    cursor: pointer;
+    padding-right: 10px;
+}

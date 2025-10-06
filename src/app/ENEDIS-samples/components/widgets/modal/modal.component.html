@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <h6>Modale de base</h6>
+      <button type="button" class="btn btn-block btn-primary" (click)="openModal(template)">Ouvrir la modale</button>
+      <ng-template #template>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Titre de la fenêtre modale</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Voici le texte que contient la fenêtre modale.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" (click)="modalRef?.hide()">Fermer</button>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-12 col-md-4">
+      <h6>Modales imbriquées</h6>
+      <button type="button" class="btn btn-sm btn-block btn-primary" (click)="openModal2(template2)">Ouvrir la première modale</button>
+      <ng-template #template2>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Première modale</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2?.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Ceci est la première modale.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-block btn-primary" (click)="openModal3(templateNested)">Ouvrir la seconde modale</button>
+        </div>
+      </ng-template>
+      <ng-template #templateNested>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Seconde modale</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef3?.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Ceci est une modale imbriquée.
+        </div>
+        <div class="modal-footer">
+          <button *ngIf="modalRef2" type="button" class="btn btn-sm btn-danger" (click)="closeFirstModal()">Fermer la première modale</button>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-12 col-md-4">
+      <h6>Modale de confirmation</h6>
+      <button type="button" class="btn btn-block btn-sm btn-primary" (click)="openModal4(template3)">Ouvrir la modale</button>
+      <br>
+      <pre class="card card-block card-header">{{message}}</pre>
+      <ng-template #template3>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Titre de la fenêtre modale</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef4?.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Voici le texte que contient la fenêtre modale.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-primary" (click)="fakeSaveData()" requiredPermissionToEnable="HTA_CREATE">Enregistrer</button>
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" (click)="fakeDeclineSaveData()">Fermer</button>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr />
+      <h6>Exemples</h6>
+      <p>Tous les exemples peuvent être vus <a href="https://valor-software.com/ngx-bootstrap/#/modals" target="_blank">ici</a>.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+.help {
+    color: var(--bleu_enedis_600);
+    font-weight: bold;
+}
+
+.alert {
+    position: absolute;
+    z-index: 30;
+}
+
+.button {
+    position: absolute;
+    min-width: 250px;
+}
+
+table {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+thead {
+    display: inline-block;
+    height: 150px;
+}
+
+tbody {
+    display: inline-block;
+    overflow-y: auto !important;
+    max-height: calc(100vh - 550px) !important;
+}
+
+table td,
+table th {
+    padding: 0 10px;
+    width: 60px;
+    border-bottom: 1px solid #eee;
+}
+
+table td.lg,
+table th.lg {
+    width: 400px;
+}
+
+table td.md,
+table th.md {
+    width: 130px;
+}
+
+table td.md-button,
+table th.md-button {
+    width: 100px;
+}
+
+input.search {
+    height: 50px;
+}
+
+table td.switch,
+table th.switch {
+    width: 41px !important;
+    padding: 0;
+}
+
+.rotated-header th {
+    height: 150px;
+    vertical-align: bottom;
+    text-align: left;
+    line-height: 1;
+}
+
+.rotated-header-container {
+    width: 25px;
+}
+
+.rotated-header-content {
+    font-family: 'Enedis';
+    text-transform: none;
+    width: 200px;
+    transform-origin: bottom left;
+    transform: translateX(20px) rotate(-45deg);
+}
+
+.form-check-input.green:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.form-check-input.blue:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+th span.sort-by {
+    cursor: pointer;
+    padding-right: 18px;
+    position: relative;
+}
+
+span.sort-by:before,
+span.sort-by:after {
+    border: 4px solid transparent;
+    content: "";
+    display: block;
+    height: 0;
+    right: 5px;
+    top: 50%;
+    position: absolute;
+    width: 0;
+}
+
+span.sort-by:before {
+    border-bottom-color: #666;
+    margin-top: -9px;
+}
+
+span.sort-by:after {
+    border-top-color: #666;
+    margin-top: 1px;
+}

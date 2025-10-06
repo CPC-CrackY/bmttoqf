@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <h6>Toggle simple</h6>
+      <button type="button" class="btn btn-block btn-primary" (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Toggle collapse
+      </button>
+      <br />
+      <br />
+      <div id="collapseBasic" [collapse]="isCollapsed">
+        <div class="well well-lg card card-block card-header">Some content</div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <h6>Toggle animé</h6>
+      <button type="button" class="btn btn-block btn-primary" (click)="isCollapsedAnimated = !isCollapsedAnimated"
+              [attr.aria-expanded]="!isCollapsedAnimated" aria-controls="collapseBasic">Toggle collapse
+      </button>
+      <br />
+      <br />
+      <div id="collapseBasic" [collapse]="isCollapsedAnimated" [isAnimated]="true">
+        <div class="well well-lg card card-block card-header">Some content</div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <h6>Toggle avec events</h6>
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-block btn-primary" (click)="isCollapsedEvent = !isCollapsedEvent"
+                  [attr.aria-expanded]="!isCollapsedEvent" aria-controls="collapseEvent">Toggle
+          </button>
+        </div>
+        <div class="col-md-6">
+          Event:<br />{{message}}
+        </div>
+      </div>
+      <br />
+      <br />
+      <div id="collapseEvent"
+            [isAnimated]="true"
+            [collapse]="isCollapsedEvent"
+            (collapses)="collapses()"
+            (expands)="expands()"
+            (collapsed)="collapsed()"
+            (expanded)="expanded()">
+        <div class="well well-lg card card-block card-header">Some content</div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <h6>Toggle manuel</h6>
+      <button type="button" class="btn btn-primary" (click)="collapse.show()"
+              aria-controls="collapseManual">Show content
+      </button>
+      <button type="button" class="btn btn-primary" (click)="collapse.hide()"
+              aria-controls="collapseManual">Hide content
+      </button>
+      <hr>
+      <div id="collapseManual" #collapse="bs-collapse" [collapse]="isOpen">
+      <div class="well well-lg card card-block card-header">Some content</div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <h6>Toggle Inline</h6>
+      <button type="button" class="btn btn-success" (click)="collapse.display='inline-block'"
+              aria-controls="collapseInline">Inline-block
+      </button>
+      <button type="button" class="btn btn-primary" (click)="collapse.display='none'"
+              aria-controls="collapseInline">None
+      </button>
+      <hr>
+      <div id="collapseInline" [collapse]="!isCollapsedInline" #collapse="bs-collapse">
+      <div class="well well-lg card card-block card-header">Some content</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-12">
+        <hr />
+        <h6>Exemples</h6>
+        <p>Tous les exemples peuvent être vus <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">ici</a>.</p>
+      </div>
+    </div>
+</div>

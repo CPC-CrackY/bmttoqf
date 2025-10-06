@@ -1,0 +1,12 @@
+<li class="nav-item avatar dropdown">
+  <a class="nav-link dropdown-toggle" href="javascript:" id="dropdownConnectedMenu" role="button"
+    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <!--img id="profilePicture" [src]="profilePicture" class="rounded-circle z-depth-0" -->
+    <div class="initials">{{initials}}</div>    
+    {{parent.label}}
+  </a>
+  <div *ngIf="parent.childs" class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+    aria-labelledby="dropdownConnectedMenu">
+    <app-navbar-item *ngFor="let link of parent.childs" [link]="link"></app-navbar-item>
+  </div>
+</li>

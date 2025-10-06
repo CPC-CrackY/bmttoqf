@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h3>Ajout d'un ou plusieurs utilisateurs</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-8">
+            <h6>Rechercher un utilisateur (nom, prénom, NNI)</h6>
+            <label for="isNationalWide"><input type="checkbox" id="isNationalWide" [(ngModel)]="isNationalWide"
+                    (change)="searchUser()" />
+                rechercher en dehors de ma DR</label><br>
+            <input type="search" placeholder="Nom, prénom ou NNI" [(ngModel)]="search" (keyup)="searchUser()"
+                class="form-control input-sm" style="font-size: 90% !important;" title="Entrez a minima 3 caractères">
+            <select [(ngModel)]="selectedFoundUsers" multiple="multiple" class="form-control input-sm"
+                style="width:100%; height:80px; font-size: 90% !important;" (dblclick)="addUser()"
+                title="Double-click sur un nom pour l'ajouter">
+                <option *ngFor="let user of foundUsers" [value]="user">{{user.last_name}} {{user.first_name}}
+                    ({{user.um_label}} / {{user.dum_label}} / {{user.sdum_label}})
+                </option>
+            </select>
+        </div>
+        <div class="col-1">
+            <br />
+            <br />
+            <br />
+            <button class="btn btn-sm btn-success btn-arrow" (click)="addUser()"
+                [disabled]="selectedFoundUsers.length == 0" title="Ajouter">👉</button><br />
+            <button class="btn btn-sm btn-success btn-arrow" (click)="removeUser(selectedUsers)"
+                [disabled]="selectedUsers.length == 0" title="Retirer">👈</button>
+        </div>
+        <div class="col-3">
+            <h6>Utilisateurs à ajouter :</h6>
+            <select [(ngModel)]="selectedUsers" multiple="multiple" class="form-control"
+                style="width:100%; height:110px; font-size: 90% !important" (dblclick)="removeUser(selectedUsers)"
+                title="Double-click sur un nom pour le retirer">
+                <option *ngFor="let user of users" [value]="user">{{user.last_name}} {{user.first_name}}</option>
+            </select>
+        </div>
+    </div>
+    <h6 style="margin-top: 15px;">Sélection des rôles et des périmètres des utilisateurs à ajouter</h6>
+    <div class="alert alert-info">Note : pour chacun des droits, il faut indiquer un périmètre. Si le périmètre est
+        vide, le droit ne sera pas pris en compte.</div>
+    <div *ngFor="let role of roles; let index = index" class="grant">
+        <div class="custom-control custom-switch">
+            <div class="row">
+                <div class="col-5 form-check form-switch">
+                    <input type="checkbox" class="form-check-input" id="chk_{{role.label}}"
+                        [(ngModel)]="grants[role.label]">
+                    <label class="form-check-label" for="chk_{{role.label}}" [innerHTML]="role.label"></label>
+                </div>
+                <div class="col-7" *ngIf="grants[role.label]">
+                    <ng-select [items]="domaines" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+                        bindLabel="libelle" bindValue="code_unite" class="input-sm autoWidth"
+                        style="margin-bottom: 10px;" placeholder="Sélectionnez les périmètres"
+                        [(ngModel)]="arrayPerimeters[index]" [dropdownPosition]="'bottom'">
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" [(ngModel)]="item$.selected" /> {{item.libelle}}
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+<div class="modal-footer">
+    <button [disabled]="saving" class="btn btn-sm btn-success float-right" (click)="save()">Ajouter</button>
+</div>

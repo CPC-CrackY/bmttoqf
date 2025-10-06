@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-5 col-xl-4 p-2">
+        <label for="customRange">Veuillez déplacer le slider :</label>
+        <input
+          type="range"
+          class="custom-range"
+          min="0"
+          max="50"
+          id="customRange"
+          (input) = "controlValue()"
+          [(ngModel)]="value">
+        <div class="alert alert-info" ngClass="{{class}}">Vous avez choisi la valeur {{value}}</div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-7 col-xl-8 p-2">
+        <tabset>
+          <tab heading=".ts" style="border: 1px solid #888;">
+            <textarea style="background-color:#eee; font-family:'Courier New', Courier, monospace; border:0; width:100%; height:400px; font-size:80%;" readonly>
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-sliders',
+  templateUrl: './sliders.component.html',
+  styleUrls: ['./sliders.component.scss']
+})
+export class SlidersComponent implements OnInit {
+
+  public value : number = 3;
+  public class : string = '';
+
+  constructor() { }
+
+  public ngOnInit() {
+    this.controlValue();
+  }
+
+  public controlValue() {
+    if (this.value > 0 && this.value <= 15) {
+      this.class = 'bg-success';
+    } else if (this.value > 15 && this.value <= 30) {
+      this.class = 'bg-warning';
+    } else if (this.value > 30) {
+      this.class = 'bg-danger';
+    } else {
+      this.class = '';
+    }
+  }
+
+}                
+            </textarea>
+          </tab>
+          <tab heading=".html" style="border: 1px solid #888;">
+            <textarea style="background-color:#eee; font-family:'Courier New', Courier, monospace; border:0; width:100%; height:400px; font-size:80%;" readonly>
+<label for="customRange">Veuillez déplacer le slider :</label>
+<input
+  type="range"
+  class="custom-range"
+  min="0"
+  max="50"
+  id="customRange"
+  (input) = "controlValue()"
+  [(ngModel)]="value">
+<div class="alert alert-info" ngClass="{{class}}">Vous avez choisi la valeur {{value}}</div>
+            </textarea>
+          </tab>
+        </tabset>
+    </div>
+  </div>
+</div>

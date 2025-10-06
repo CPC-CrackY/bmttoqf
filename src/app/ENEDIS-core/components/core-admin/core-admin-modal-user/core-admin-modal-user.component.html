@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3 innerHTML="Gestion des droits de {{user.firstname}} {{user.lastname}}"></h3>
+</div>
+<div class="modal-body">
+    <div class="alert alert-info">Note : pour chacun des droits, il faut indiquer un périmètre.</div>
+    <div *ngFor="let role of roles; let index = index" class="grant row">
+        <div class="col-5 form-check form-switch">
+            <input type="checkbox" class="form-check-input"
+                id="chk_{{role.label}}" [(ngModel)]="user.grants[role.label]">
+            <label class="form-check-label" for="chk_{{role.label}}"
+                [innerHTML]="role.label"></label>
+        </div>
+        <div class="col-7" *ngIf="user.grants[role.label]">
+            <ng-select
+                [items]="domaines"
+                [multiple]="true"
+                [closeOnSelect]="false"
+                [searchable]="false"
+                bindLabel="libelle"
+                bindValue="code_unite"
+                class="input-xs autoWidth"
+                style="margin-bottom: 10px;"
+                placeholder="Sélectionnez les périmètres"
+                [(ngModel)]="user.perimeters[role.label]"
+                [dropdownPosition]="'bottom'"
+            >
+                <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.libelle}}
+                </ng-template>
+            </ng-select>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button [disabled]="saving" class="btn btn-sm btn-success" (click)="save()">Enregistrer</button>
+</div>

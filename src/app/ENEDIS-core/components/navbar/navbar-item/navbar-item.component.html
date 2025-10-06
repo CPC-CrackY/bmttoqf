@@ -1,0 +1,32 @@
+<div *ngIf="link.url && link.label"
+  [requiredPermissionToDisplay]="link.requiredPermissionToDisplay ? link.requiredPermissionToDisplay : false"
+  [requiredPermissionToDisplaySilently]="link.requiredPermissionToDisplaySilently ? link.requiredPermissionToDisplaySilently : false"
+  [mustBeConnectedToDisplay]="link.mustBeConnectedToDisplay ? link.mustBeConnectedToDisplay : false"
+  [mustBeDisconnectedToDisplay]="link.mustBeDisconnectedToDisplay ? link.mustBeDisconnectedToDisplay : false">
+  <a class="nav-link" tabindex="0" routerLinkActive="active" routerLink="/{{link.url}}" role="tab"
+    aria-keyshortcuts="link.keyshortcuts">
+    <li class="nav-item">
+      <div [innerHTML]="link.label | safe: 'html'"></div>
+    </li>
+  </a>
+</div>
+<div *ngIf="!link.url && link.href && link.label"
+  [requiredPermissionToDisplay]="link.requiredPermissionToDisplay ? link.requiredPermissionToDisplay : false"
+  [requiredPermissionToDisplaySilently]="link.requiredPermissionToDisplaySilently ? link.requiredPermissionToDisplaySilently : false"
+  [mustBeConnectedToDisplay]="link.mustBeConnectedToDisplay ? link.mustBeConnectedToDisplay : false"
+  [mustBeDisconnectedToDisplay]="link.mustBeDisconnectedToDisplay ? link.mustBeDisconnectedToDisplay : false">
+  <a class="nav-link" tabindex="0" [href]="link.href.replaceAll('[[app]]', app_name)">
+    <li class="nav-item">
+      <div [innerHTML]="link.label | safe: 'html'"></div>
+    </li>
+  </a>
+</div>
+<div *ngIf="!link.url && !link.href && link.label"
+  [requiredPermissionToDisplay]="link.requiredPermissionToDisplay ? link.requiredPermissionToDisplay : false"
+  [requiredPermissionToDisplaySilently]="link.requiredPermissionToDisplaySilently ? link.requiredPermissionToDisplaySilently : false"
+  [mustBeConnectedToDisplay]="link.mustBeConnectedToDisplay ? link.mustBeConnectedToDisplay : false"
+  [mustBeDisconnectedToDisplay]="link.mustBeDisconnectedToDisplay ? link.mustBeDisconnectedToDisplay : false">
+  <a class="nav-link" tabindex="0">
+    <div [innerHTML]="link.label"></div>
+  </a>
+</div>

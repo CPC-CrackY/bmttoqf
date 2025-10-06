@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col p-0" *ngFor="let filter of filters">
+        <ng-select *ngIf="filter.multiple" [dropdownPosition]="'bottom'" [placeholder]="filter.name"
+            [items]="filter.items" bindLabel="name" bindValue="filter" groupBy="groupValue" [selectableGroup]="true"
+            [selectableGroupAsModel]="false" [multiple]="filter.multiple" [closeOnSelect]="false"
+            (change)="applyChange(filter.name)" [(ngModel)]="selectionsUtilisateur[filter.name]" class="input-xs">
+            <ng-template ng-optgroup-tmp let-item="item">
+                {{item.groupValue || ''}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <div class="item" [style.padding]="filter.itemPadding">
+                    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />  <span
+                        class="ng-value-label" [innerHTML]="item.name | safe:'html'"></span>
+                    <span *ngIf="item.count" class="count" [style.backgroundColor]="filter.color"
+                        [style.left]="filter.countLeft" [style.right]="filter.countRight">{{item.count}}</span>
+                </div>
+            </ng-template>
+            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                <div *ngFor="let item of items; let i = index">
+                    <div class="ng-value" *ngIf="i < filter.maxItems">
+                        <span class="ng-value-label" [innerHTML]="item.name | safe:'html'"></span>
+                        <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                    </div>
+                </div>
+                <div class="ng-value" *ngIf="items.length > filter.maxItems">
+                    <span class="ng-value-label">{{items.length - filter.maxItems}} de plus...</span>
+                </div>
+            </ng-template>
+        </ng-select>
+        <ng-select *ngIf="!filter.multiple" [dropdownPosition]="'bottom'" [placeholder]="filter.name"
+            [items]="filter.items" bindLabel="name" bindValue="filter" groupBy="groupValue" [selectableGroup]="false"
+            [selectableGroupAsModel]="false" (change)="applyChange(filter.name)"
+            [(ngModel)]="selectionsUtilisateur[filter.name]" class="input-xs">
+            <ng-template ng-optgroup-tmp let-item="item">
+                {{item.groupValue || ''}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <div class="item" [style.padding]="filter.itemPadding">
+                    {{item.name}}
+                    <span *ngIf="item.count" class="count" [style.backgroundColor]="filter.color"
+                        [style.left]="filter.countLeft" [style.right]="filter.countRight">{{item.count}}</span>
+                </div>
+                {{item.name}}
+            </ng-template>
+        </ng-select>
+    </div>
+    <ng-content [select]="additionalFilters"></ng-content>
+</div>

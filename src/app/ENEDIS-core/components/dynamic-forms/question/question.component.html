@@ -1,0 +1,55 @@
+<div [ngClass]="question.class" [formGroup]="form">
+    <label [attr.for]="question.key" [ngClass]="question.labelClass">{{question.label}}</label>
+    <div [ngSwitch]="question.controlType">
+        
+        <!-- <input *ngSwitchCase="['textbox', 'checkbox'].includes(question.controlType) ? question.controlType : '' " [placeholder]="question.placeholder" [formControlName]="key"
+            [id]="question.key" [type]="question.type"> -->
+            
+            <input *ngSwitchCase="'textbox'" [placeholder]="question.placeholder" [formControlName]="key"
+            [id]="question.key" [type]="question.type" [ngClass]="question.inputClass">
+
+            <textarea *ngSwitchCase="'textarea'" [placeholder]="question.placeholder" [formControlName]="key"
+            [id]="question.key" [ngClass]="question.inputClass">
+            </textarea>
+            
+            <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="key" [ngClass]="question.inputClass">
+                <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+            </select>
+            
+            <ng-container *ngSwitchCase="'radio'"  >
+                <div *ngFor="let child of $any(question).choix" [ngClass]="question.inputClass">
+                    <label [attr.for]="child.label" [ngClass]="child.labelClass" *ngIf="child.labelBefore">{{child.label}}</label>
+                    <input type="radio" [formControlName]="key" [attr.id]="child.label" [value]="child.value" [ngClass]="child.inputClass">
+                    <label [attr.for]="child.label" [ngClass]="child.labelClass" *ngIf="!child.labelBefore">{{child.label}}</label>
+                </div>
+            </ng-container>
+            
+            <ng-container *ngSwitchCase="'checkbox'" >
+                <input type="checkbox" [formControlName]="key" [attr.name]="question.key" [value]="question.label" [ngClass]="question.inputClass">
+            </ng-container>
+            
+            <div *ngSwitchCase="'groupe'" [formGroupName]="key">
+                <fieldset [ngClass]="$any(question).fieldsetClass">
+                    <app-question *ngFor="let q of question.questions" [parent]="question" [question]="q" [form]="getFormGroup(key)" [ngClass]="$any(question).loopClass"></app-question>
+                </fieldset>
+            </div>
+            <div *ngSwitchCase="'array'" [formArrayName]="key">
+                <fieldset [ngClass]="$any(question).fieldsetClass">
+                    <div *ngFor="let elQuestion of getFormArray(key).controls; let i=index" [ngClass]="$any(question).loopClass">
+                        <app-question [question]="question.questions[i]" [parent]="question" [form]="getFormGroup(key)" [questionId]="i"></app-question>
+                        <button type="button" [ngClass]="$any(question).buttonRemoveClass"  (click)="removeChild($event, i)">{{ $any(question).buttonRemoveText }}</button>
+                    </div>
+                    <button type="button" [ngClass]="$any(question).buttonAddClass" (click)="addChild(key, question.questions, question.childs)">{{ $any(question).buttonAddText }}</button>
+                </fieldset>
+                
+            </div>
+            
+        </div>
+        <div [ngClass]="question.invalidClass" class="errorMessage" *ngIf="!isValid">
+            <ng-container *ngFor="let message of question.messages">
+                <div *ngIf="getErrors(message.validator)">
+                    {{message.message}}
+                </div>
+            </ng-container>
+        </div>
+    </div>

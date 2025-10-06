@@ -1,0 +1,52 @@
+<div [requiredPermissionToDisplay]="['PARAMETRES']" class="no-select">
+    <div class="container" *ngIf="webEnv === 'poc'">
+        <h3>Synchronisation des tables depuis la PROD</h3>
+        <div class="alert alert-info">
+            Cette fonctionnalité ne sert à rien en POC car il n'y a pas de données de PROD associées.
+        </div>
+    </div>
+    <div class="container" *ngIf="webEnv === 'dev'">
+        <h3>Synchronisation des tables depuis la PROD</h3>
+        <div class="alert alert-info">
+            Pour choisir les tables qui doivent être incluses dans le package d'import, vous devez vous connecter à la
+            PROD.
+        </div>
+    </div>
+    <div class="container" *ngIf="webEnv === 'prod'">
+        <h3>Tables à exporter</h3>
+        <div class="alert alert-info">
+            Sélectionnez ici les tables qui seront contenues dans le package qui pourra être importé par le serveur
+            de DEV.<br>
+            Le bouton [ Enregistrer ] se trouve en bas de la liste.
+        </div>
+        <table aria-describedby="Liste des tables de la BDD">
+            <thead>
+                <tr>
+                    <th><input class="form-check-input" type="checkbox" [checked]="allChecked"
+                            [indeterminate]="someChecked()" (change)="toggleAllCheckboxes()" id="checkAll">
+                        <label for="checkAll">  <b>Tout cocher / décocher</b></label>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let table of tables">
+                    <td><input class="form-check-input me-2" type="checkbox" [(ngModel)]="table.checked"
+                            (ngModelChange)="updateAllChecked()" id="chk_{{table.name}}" name="chk_table">
+                        <label class="form-check-label" for="chk_{{table.name}}">{{table.name}}</label>
+                    </td>
+                    <td><button *ngIf="table.checked" class="btn btn-xs anonymize-button" (click)="onClickEdit(table)"
+                            [ngClass]="{'btn-success': getAnonymizedFieldsCount(table) > 0, 'btn-default': getAnonymizedFieldsCount(table) === 0}">
+                            {{ getAnonymizedFieldsCount(table) > 0 ?
+                            getAnonymizedFieldsCount(table) + ' DCPs anonymisées' :
+                            'Anonymiser les DCP' }}
+                        </button></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button class="btn btn-primary btn-sm pull-right" (click)="onClickSave()">Enregistrer</button>
+        <br>
+        <br>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<footer id="footer" class="footer d-print-none" *ngIf="isNotOnLogin()">
+  <div class="leftFooter">
+    <div class="logo">
+      <div id="logoEnedis"></div>
+      <a href="/" class="appName">{{environment.app_name}}</a>
+      <div *ngIf="webEnv === 'localhost'" id="corner-ribbon" class="violet doubleLine">Environnement<br>de
+        développement</div>
+      <div *ngIf="webEnv === 'poc'" id="corner-ribbon" class="red singleLine">Serveur de POC</div>
+      <div *ngIf="webEnv === 'dev'" id="corner-ribbon" class="red singleLine">Serveur de test</div>
+      <div *ngIf="webEnv !== 'prod' && apiEnv === 'prod'">
+        <span class="warning">ATTENTION : Vous travaillez sur les données de PRODUCTION !!!</span>
+      </div>
+      <div *ngIf="webEnv === 'prod' && apiEnv !== 'prod'">
+        <span class="warning">ATTENTION : vous travaillez sur les données de RECETTE !!!</span>
+      </div>
+    </div>
+    <span *ngIf="leftFooter" [innerHTML]="leftFooter | unescape"></span>
+  </div>
+  <div class="enedisLab">
+    <div id="logoEnedisLab"></div>
+  </div>
+  <div class="rightFooter">
+    <span [innerHTML]="rightFooter | unescape"></span>
+  </div>
+  <span style="display:none;" #hiddenValue id="hiddenValue" data-version="§#5.8.3#§"></span>
+  <small class="version"><span [title]="title">SAB : </span>frontend {{frontendVersion}}<span
+      style="color: yellow !important; font-size: 200% !important;" [requiredPermissionToDisplaySilently]="['ROLES']"
+      *ngIf="frontendVersion !== lastVersionsAvailables?.lastFrontendVersion"
+      [title]="'Dernière version : ' + lastVersionsAvailables?.lastFrontendVersion" [innerHTML]="' ⚠'"></span>
+    & backend
+    {{backendVersion}}<span style="color: yellow !important; font-size: 200% !important;"
+      [requiredPermissionToDisplaySilently]="['ROLES']"
+      *ngIf="backendVersion !== lastVersionsAvailables?.lastBackendVersion"
+      [title]="'Dernière version : ' + lastVersionsAvailables?.lastBackendVersion" [innerHTML]="' ⚠'"></span>
+  </small>
+</footer>

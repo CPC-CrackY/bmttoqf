@@ -1,0 +1,26 @@
+<div class="container">
+    <div [requiredPermissionToDisplay]="['PARAMETRES']">
+        <h3>Gestion des paramètres</h3>
+        <div class="alert alert-warning">
+            Seuls les développeurs de l'outil peuvent modifier les paramètres car leur gestion passe aussi par la
+            configuration du code source de l'application.
+        </div>
+        <table>
+            <caption>Liste des paramètres de l'application</caption>
+            <tr>
+                <th>Nom du paramètre</th>
+                <th>Valeur du paramètre</th>
+            </tr>
+            <tr *ngFor="let parameter of parameters">
+                <td>{{parameter.name}}</td>
+                <td><input class="form-control input-xs" [type]="parameter.hidden == 1 ? 'password': 'text'"
+                        [(ngModel)]="parameter.value" title="Entrez ici la valeur" placeholder="Valeur">
+                </td>
+                <td [title]="parameter.description">❓</td>
+            </tr>
+        </table>
+        <button class="btn btn-primary btn-sm pull-right" (click)="save()"
+            [requiredPermissionToDisplaySilently]="['PARAMETRES']">Enregistrer</button>
+
+    </div>
+</div>

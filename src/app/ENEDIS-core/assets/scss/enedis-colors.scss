@@ -1,0 +1,148 @@
+:root {
+// Variables de couleurs de la charte graphique Enedis
+
+// Couleurs des textes
+--texte_blanc: white;
+--texte_noir: #101014;
+
+// Couleurs identitaires & variations
+// Bleu Enedis
+--bleu_enedis_200: #F6F6FE;
+--bleu_enedis_300: #DADDFC;
+--bleu_enedis_400: #4D59EF;
+--bleu_enedis_500: #1423DC;
+--bleu_enedis_600: #004689;
+--bleu_enedis_700: #002E5B;
+
+// Vert Enedis
+--vert_enedis_200: #F7FBEF;
+--vert_enedis_300: #D5EBAD;
+--vert_enedis_400: #B5DC6F;
+--vert_enedis_500: #96CD32;
+--vert_enedis_600: #698F23;
+--vert_enedis_700: #3C5214;
+
+// Neutre
+--neutre_50: #FFFFFF;
+--neutre_75: #FAFAFA;
+--neutre_100: #F1F2F3;
+--neutre_200: #E9EBEC;
+--neutre_300: #DEE0E3;
+--neutre_400: #C8CBD0;
+--neutre_500: #AEB1B7;
+--neutre_600: #868A93;
+--neutre_700: #60616C;
+--neutre_800: #3B3C45;
+--neutre_900: #101014;
+
+// Vert foncé
+--vert_fonce_200: #E9F6F1;
+--vert_fonce_300: #A0D9C2;
+--vert_fonce_400: #62C09A;
+--vert_fonce_500: #41A57D;
+--vert_fonce_600: #368766;
+--vert_fonce_700: #1D4938;
+
+// Jaune solaire
+--jaune_solaire_200: #FFF6F0;
+--jaune_solaire_300: #FFE3A3;
+--jaune_solaire_400: #FFCE5C;
+--jaune_solaire_500: #FFC328;
+--jaune_solaire_600: #F5AB00;
+--jaune_solaire_700: #805900;
+
+// Rouge
+--rouge_200: #FFE0E6;
+--rouge_300: #FFA3B4;
+--rouge_400: #FF4768;
+--rouge_500: #E10028;
+--rouge_600: #AD001F;
+--rouge_700: #7A0016;
+
+//Couleur d'action
+
+//Bleu Moyen
+--bleu_moyen_200: #E5F1FB;
+--bleu_moyen_300: #B1D4F2;
+--bleu_moyen_400: #6FB1B7;
+--bleu_moyen_500: #2382D2;
+--bleu_moyen_600: #1F73B7;
+--bleu_moyen_700: #18578C;
+
+//Couleurs complémentaires
+
+// Turquoise
+--turquoise_200: #E8F7F7;
+--turquoise_300: #BEE9E9;
+--turquoise_400: #85D6D6;
+--turquoise_500: #4BC3C3;
+--turquoise_600: #37A4A4;
+--turquoise_700: #2A7E7E;
+
+// Orange
+--orange_200: #FCEAE3;
+--orange_300: #F6C1AC;
+--orange_400: #F19F7E;
+--orange_500: #EB6E3C;
+--orange_600: #E85921;
+--orange_700: #943510;
+
+// Prune
+--prune_200: #F9E6F5;
+--prune_300: #EEB4E1;
+--prune_400: #D74CB8;
+--prune_500: #AF2891;
+--prune_600: #851E6E;
+--prune_700: #5C154C;
+
+// Violet
+--violet_200: #EFE8F7;
+--violet_300: #D9C9EE;
+--violet_400: #B89BDF;
+--violet_500: #8755C8;
+--violet_600: #743DBD;
+--violet_700: #43236C;
+
+// Bleu fonçé
+--bleu_fonce_200: #E8E9F8;
+--bleu_fonce_300: #B9BCE9;
+--bleu_fonce_400: #3841B7;
+--bleu_fonce_500: #232873;
+--bleu_fonce_600: #1A1E56;
+--bleu_fonce_700: #0E112F;
+
+// Taupe
+--taupe_200: #F5F1EA;
+--taupe_300: #ECE3D5;
+--taupe_400: #DAC9AF;
+--taupe_500: #C8AF87;
+--taupe_600: #B79662;
+--taupe_700: #695330;
+
+// Marron
+--marron_200: #F1EFEF;
+--marron_300: #DCD6D6;
+--marron_400: #B1A4A4;
+--marron_500: #7C6A6A;
+--marron_600: #463C3C;
+--marron_700: #292323;
+
+// Autres couleurs
+
+// Réseaux Sociaux
+
+--facebook: #3B5998;
+--facebook_rollover: #304779;
+
+--twitter: #00ACED;
+--twitter_rollover: #2082AE;
+
+--youtube: #B00;
+--youtube_rollover: #8A050C;
+
+--linkedin: #007BB6;
+--linkedin_rollover: #0C5D87;
+
+--instagram: #322AE4;
+--instagram_rollover: #2728A8;
+}

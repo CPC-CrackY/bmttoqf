@@ -1,0 +1,20 @@
+.modal-body {
+    font-size:90% !important;
+}
+div.grant {
+    min-height: 40px;
+    padding-left: 20px;
+}
+
+:host ::ng-deep .ng-dropdown-panel {
+    min-width: 300px !important;
+    width: auto !important;
+}
+:host ::ng-deep .ng-select {
+    font-size: 120% !important;
+}
+
+.btn-arrow {
+    height: 30px;
+    padding: 0.2rem 0.7rem;
+}

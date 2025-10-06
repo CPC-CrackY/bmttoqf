@@ -1,0 +1,9 @@
+<div class="modal-body">
+    <h3>Importation d'un fichier</h3>
+    <select required [(ngModel)]="selectedTable" class="form-control">
+        <option *ngFor="let fileType of fileTypes" [value]="fileType.table">{{fileType.table}} (dernier import le {{ fileType.lastImportDate | date:'dd/MM/yyyy'}})</option>
+    </select>
+    <br />
+    <input type="file" id="file" name="file" (change)="onFileChange($event)" />
+    <button class="btn btn-success btn-block btn-sm" (click)="upload()">Importer le fichier</button>
+</div>

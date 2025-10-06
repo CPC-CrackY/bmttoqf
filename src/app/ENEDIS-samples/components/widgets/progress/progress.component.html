@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <h6>Progress bars simples</h6>
+      <progressbar [value]="0"></progressbar>
+      <progressbar [value]="25"></progressbar>
+      <progressbar [value]="50"></progressbar>
+      <progressbar [value]="75"></progressbar>
+      <progressbar [value]="100"></progressbar>
+      <hr/>
+      <h6>Avec label</h6>
+      <progressbar [value]="65">65 %</progressbar>
+    </div>
+    <div class="col-12 col-md-3">
+      <h6>En couleur</h6>
+      <progressbar [value]="35">Sans "type"</progressbar>
+      <progressbar [value]="45" type="success">type="success"</progressbar>
+      <progressbar [value]="55" type="info"   >type="info"</progressbar>
+      <progressbar [value]="65" type="warning">type="warning"</progressbar>
+      <progressbar [value]="75" type="danger" >type="danger"</progressbar>
+      <hr/>
+      <h6>Différentes épaisseurs<br /><small>(3px, 10px, défaut)</small></h6>
+      <progressbar [value]="75" style="height:3px; "></progressbar>
+      <progressbar [value]="75" style="height:10px; "></progressbar>
+      <progressbar [value]="75">15px (par défaut)</progressbar>
+    </div>
+    <div class="col-12 col-md-3">
+      <h6>Rayées</h6>
+      <progressbar [value]="20" [striped]="true"></progressbar>
+      <progressbar [value]="35" [striped]="true" type="success"></progressbar>
+      <progressbar [value]="50" [striped]="true" type="info"  ></progressbar>
+      <progressbar [value]="65" [striped]="true" type="warning"></progressbar>
+      <progressbar [value]="80" [striped]="true" type="danger" ></progressbar>
+      <hr/>
+      <h6>Cumulées</h6>
+      <progressbar class="progress" [value]="stacked" [max]="100"></progressbar>
+      <div class="row">
+        <div class="col text-center">
+          <button type="button" class="btn btn-sm btn-warning" (click)="randomStacked()">Aléatoire</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <h6>Animées</h6>
+      <progressbar [value]="20" [striped]="true" [animate]="true"></progressbar>
+      <progressbar [value]="35" [striped]="true" [animate]="true" type="success"></progressbar>
+      <progressbar [value]="50" [striped]="true" [animate]="true" type="info"  ></progressbar>
+      <progressbar [value]="65" [striped]="true" [animate]="true" type="warning"></progressbar>
+      <progressbar [value]="80" [striped]="true" [animate]="true" type="danger" ></progressbar>
+      <hr/>
+      <h6>Custom (inline CSS)</h6>
+      <progressbar
+        [max]="200"
+        [value]="166"
+        type="danger"
+        style="
+          height:24px;
+          border-radius:12px;
+          border: 2px solid black;
+          box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
+        "
+      ><i>166 / 200</i></progressbar>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr />
+      <h6>Exemples</h6>
+      <p>Tous les exemples peuvent être vus <a href="https://valor-software.com/ngx-bootstrap/#/progressbar" target="_blank">ici</a>.</p>
+    </div>
+  </div>
+</div>

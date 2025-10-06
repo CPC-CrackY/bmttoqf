@@ -1,0 +1,8 @@
+<div class="grantersContainer" id="grantersContainer" *ngIf="granters.length > 0">
+    <h3>Ces personnes peuvent vous habiliter :</h3>
+    <div class="granters">
+        <div class="granter" *ngFor="let granter of granters">
+            <a (click)="askGrantsByMail(granter.email,granter.firstname)" title="Envoyer une demande par e-mail">📧</a> {{granter.firstname}} {{granter.lastname}}
+        </div>
+    </div>
+</div>

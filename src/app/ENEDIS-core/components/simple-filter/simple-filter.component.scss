@@ -1,0 +1,16 @@
+.item {
+    display: inline-block;
+    width: 100%;
+    padding: 0 0 0 40px;
+}
+.count {
+    min-width: 40px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-align: center;
+    font-size:90%;
+    color: white;
+    background-color: var(--taupe_400);
+    position: absolute;
+    left: 10px;
+}

@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Anonymisation des DCP ou ICS pour la table {{ table.name }}</h4>
+</div>
+<div class="modal-body">
+    <div class="row font-weight-bold mb-2">
+        <div class="col-4">Nom du champ</div>
+        <div class="col-4">Méthode d'anonymisation</div>
+        <div class="col-4">Options</div>
+    </div>
+    <div *ngFor="let field of table.fields" class="row mb-2 align-items-center">
+        <div class="col-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="field.anonymize" id="chk_{{field.name}}">
+                <label class="form-check-label" for="chk_{{field.name}}">
+                    {{ field.name }}
+                </label>
+            </div>
+        </div>
+        <div class="col-4" *ngIf="field.anonymize">
+            <select title="Méthode d'anonymisation" [(ngModel)]="field.anonymizationMethod" class="form-control"
+                required>
+                <option value="">Sélectionnez une méthode</option>
+                <option value="shuffleIdentifier">NNI</option>
+                <option value="substituteFromDictionary">Nom, prénom ou adresse</option>
+                <option value="maskPhoneNumber">Numéro de téléphone</option>
+                <option value="fuzzyDate">Date</option>
+                <option value="maskEmail">e-Mail</option>
+                <option value="hashIdentifier">Autre DCP ou ICS, à mélanger</option>
+                <option value="emptyValue">Autre DCP ou ICS, à supprimer</option>
+            </select>
+        </div>
+        <div class="col-4" *ngIf="field.anonymize">
+            <div [ngSwitch]="field.anonymizationMethod">
+                <input *ngSwitchCase="'hashIdentifier'" type="number" [(ngModel)]="field.anonymizationConfig.length"
+                    placeholder="Longueur" class="form-control">
+                <select title="Sélectionnez un type de dictionnaire" *ngSwitchCase="'substituteFromDictionary'"
+                    [(ngModel)]="field.anonymizationConfig.type" class="form-control" required>
+                    <option value="">Sélectionnez un type</option>
+                    <option *ngFor="let type of dictionaryTypes" [value]="type.value">
+                        {{type.label | titlecase}}
+                    </option>
+                </select>
+                <input *ngSwitchCase="'fuzzyDate'" type="number" [(ngModel)]="field.anonymizationConfig.range"
+                    placeholder="Imprécision (jours)" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Fermer</button>
+</div>

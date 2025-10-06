@@ -1,0 +1,5 @@
+<nav class="navbar navbar-expand-sm bg-primary d-print-none">
+  <ul *ngIf="links" class="navbar-nav">
+    <app-navbar-item *ngFor="let link of links" [link]="link"></app-navbar-item>
+  </ul>
+</nav>

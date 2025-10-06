@@ -1,0 +1,7 @@
+# 1 - Copier ce fichier à la racine de votre projet.
+# 2 - Renommer le en .gitlab-ci.yml
+#
+include:
+  project: team-dev-dr-breatagne/squelette-angular-php
+  ref: main
+  file: .gitlab-ci.yml

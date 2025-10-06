@@ -1,0 +1,57 @@
+# Fichier de configuration de la pipeline CI/CD - DR Bretagne
+# Version du 1er juillet 2025
+
+include:
+  - project: 'dev/commun/templates'
+    ref: &CI_TEMPLATE_VERSION 'main'
+    file:
+    - 'templates/sonarcli-scan.yml'
+
+stages:
+  - test
+
+variables:
+  NPM_IMAGE: ${PLACIDE_RELEASES_DOCKER_REPO}.${REPOSITOI_LOCAL_ZONE_HOSTNAME}/trion/ng-cli:15.0.2
+  CI_TEMPLATE_VERSION: *CI_TEMPLATE_VERSION
+  RENOVATE:
+    description: "Run Renovate job"
+    value: "false"
+    options:
+      - "true"
+      - "false"
+
+.default_rules:
+  rules:
+    # Lancement manuel via interface Web
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: always
+
+    # Push sur une branche avec une MR ouverte
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_OPEN_MERGE_REQUESTS'
+      when: always
+
+    # Merge d’une MR vers la branche par défaut
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: always
+
+    # Sinon, ne rien faire
+    - when: never
+
+sonarqube-scan:
+  extends: .sonarcli-scan-template
+  stage: test
+  before_script: |
+    echo "Chemin actuel : $(pwd)"
+    echo "Contenu du dossier courant :"
+    ls -al
+    echo "Structure récursive :"
+    ls -R
+  variables:
+    SONAR_PROJECT_KEY: "${SONAR_PROJECT_KEY}"
+    SONAR_PROJECT_NAME: "${CI_PROJECT_TITLE}"
+    SONAR_PROJECT_VERSION: "1.0.0"
+    SONAR_SCANNER_OPTS: "-Dsonar.qualitygate.wait=true"
+  rules:
+    - !reference [.default_rules, rules]
+  allow_failure:
+    false

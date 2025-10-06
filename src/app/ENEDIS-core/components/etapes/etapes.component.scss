@@ -1,0 +1,41 @@
+.etapes {
+    display: flex;
+}
+.etapes-bloc {
+    display: flex;
+    margin-right: 1.5rem;
+    flex-direction: column;
+}
+.etapes-bloc-num {
+    display: flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: #96CD32;
+    color: #fff;
+    font-size: 1rem;
+}
+.etapes-bloc-fil {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+.etapes-fil {
+    width: 1px;
+    background-color: #96CD32;
+}
+.etapes-contenu {
+    margin-top: -1px;
+    margin-bottom: 2rem;
+    flex: 1;
+    margin-right: 5%;
+}
+.etapes-contenu-titre {
+    margin-bottom: 1rem;
+    color: #1423DC;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.25;
+}

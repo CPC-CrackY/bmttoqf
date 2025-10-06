@@ -1,0 +1,21 @@
+.framed, .bd-highlight {
+  border: 1px solid black;
+  padding:10px;
+  background-color:#cee;
+}
+
+.bd-clipboard {
+    display: none;
+}
+
+.highlight {
+    margin: 10px 0;
+    background-color:#eee;
+    border:1px solid black;
+    border-radius:5px;
+    padding:10px 10px 0 10px;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace !important;
+}

@@ -1,0 +1,73 @@
+<div class="container-xxl">
+    <div [requiredPermissionToDisplay]="['ROLES','HABILITATIONS']">
+        <h3>Gestion des utilisateurs
+            <span class="help" (mouseover)="helpRequired=true" (mouseleave)="helpRequired=false">
+                (aide ?)
+            </span>
+        </h3>
+        <div *ngIf="helpRequired" class="alert alert-info">
+            Les rôles et périmètres fonctionnent comme ceux de Gardian IDM.<br />
+            La cible est de migrer toute application sous Gardian WebSSO (avec gestion des droits -IDM- ), afin de
+            ne plus utiliser
+            cette fonctionnalité.
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button class="button btn btn-primary btn-sm pull-left" (click)="addUsers()">➕   Ajouter des
+                    utilisateurs</button>
+            </div>
+            <div class="col">
+                <input type="search" class="form-control search" (input)="onChangeSearch()" [(ngModel)]="searchItem"
+                    [placeholder]="placeholder" />
+            </div>
+            <div class="col">
+                <ng-select [items]="roles" [searchable]="false" bindLabel="libelle" bindValue="label"
+                    placeholder="Selectionner un rôle" [(ngModel)]="selectedRole" (change)="onChangeSelectedRole()">
+                </ng-select>
+            </div>
+        </div>
+        <table>
+            <thead class="rotated-header">
+                <tr>
+                    <th class="md">NNI</th>
+                    <th class="lg">NOM</th>
+                    <th *ngFor="let role of sanitizedRoles" title="{{role.description}}" class="switch">
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content">{{role.label}}</div>
+                        </div>
+                    </th>
+                    <th class="md-button"></th>
+                    <th class="md-button"></th>
+                    <th class="md" (click)="sort('creation_date', sortOrder)"><span class="sort-by">Ajouté(e) le</span>
+                    </th>
+                    <th class="md" (click)="sort('last_successfull_login', sortOrder)"><span class="sort-by">Dernière
+                            connexion</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usersFiltered">
+                    <td class="md">{{user.nni}}</td>
+                    <td class="lg">{{user.lastname}} {{user.firstname}}</td>
+                    <td *ngFor="let role of roles; let index = index" class="switch">
+                        <!-- Default switch -->
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="chk_{{role.label}}_{{user.nni}}" [innerHTML]="">
+                                <input title=" " type="checkbox" disabled class="form-check-input"
+                                    id="chk_{{role.label}}_{{user.nni}}" [(ngModel)]="user.grants[role.label]"
+                                    [ngClass]="{'blue': isBlueCheckbox(user, role.label), 'green': !isBlueCheckbox(user, role.label)}" />
+                            </label>
+                        </div>
+                    </td>
+                    <td class="md-button"><button class="btn btn-xxs btn-default" (click)="edit(user)">Editer</button>
+                    </td>
+                    <td class="md-button"><button class="btn btn-xxs btn-danger"
+                            (click)="remove(user)">Supprimer</button></td>
+                    <td class="md">{{user.creation_date | date:'dd/MM/yy'}}
+                    </td>
+                    <td class="md">{{user.last_successfull_login |
+                        date:'dd/MM/yy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

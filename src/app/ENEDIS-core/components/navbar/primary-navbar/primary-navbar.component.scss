@@ -1,0 +1,45 @@
+#banniere {
+  padding: 24px 8px;
+  height: 130px !important;
+  margin-top: 40px;
+  width: 100%;
+  z-index: 2;
+  background-color: white;
+}
+
+.image-skull {
+  height: 60px;
+  top: 20px;
+  position: relative;
+  margin: 0px 20px 0 30px;
+}
+
+.bigTitle {
+  font-size: 3rem;
+  color: var(--neutre_900);
+  font-weight: 700;
+  font-family: 'Enedis', 'Public Sans', Arial, sans-serif;
+}
+
+@media screen and (max-width: 1024px) {
+  .bigTitle {
+    font-size: 4.6875vw;
+  }
+}
+
+nav {
+  z-index: 3 !important;
+}
+
+#connectedMenu,
+#disconnectedMenu {
+  background-color: var(--vert_enedis_500);
+}
+
+.localhost {
+  background-color: var(--violet_500) !important;
+}
+
+.dev {
+  background-color: var(--rouge_500) !important;
+}

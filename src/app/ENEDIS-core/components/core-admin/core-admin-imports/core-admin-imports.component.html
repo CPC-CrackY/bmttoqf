@@ -1,0 +1,24 @@
+<div class="container-xxl">
+  <div [requiredPermissionToDisplay]="['IMPORTS']">
+    <h3>Importations de fichiers</h3>
+    <div class="alert alert-warning">
+      ATTENTION, un import incorrect peut rendre l'application inutilisable : soyez vigilant(e) dans vos opérations d'importations.<br>
+      S'il existe plusieurs type d'imports, n'importez que les fichiers dont vous avez la charge.
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom du fichier</th>
+          <th>Dernier import</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fileImport of lastFileImports">
+          <td>{{ fileImport.table }}</td>
+          <td>{{ fileImport.lastImportDate | date:'dd/MM/yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary btn-sm pull-left" (click)="onClickImportFile()">➕   Importer un fichier</button>
+  </div>
+</div>

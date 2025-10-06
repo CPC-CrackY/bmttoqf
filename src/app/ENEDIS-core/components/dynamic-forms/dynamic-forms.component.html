@@ -1,0 +1,16 @@
+<div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        
+        <div *ngFor="let question of questions" class="form-row">
+            <app-question [question]="question" [form]="form"></app-question>
+        </div>
+        
+        <div class="form-row">
+            <button type="submit" [ngClass]="formulaire!.buttonSubmit.class" [disabled]="!form.valid">{{formulaire!.buttonSubmit.texte}}</button>
+            <button type="button" (click)="onCancel($event)" *ngIf='formulaire!.buttonCancel' [ngClass]="formulaire!.buttonCancel.class" [disabled]="!form.valid">{{formulaire!.buttonCancel.texte}}</button>
+        </div>
+
+    </form>
+    
+    
+</div>

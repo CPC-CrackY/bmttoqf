@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <h5>Boutons</h5>
+      <h6>Tailles</h6>
+      <button type="button" class="btn btn-block btn-sm">
+        class="btn btn-sm"
+      </button>
+      <button type="button" class="btn btn-block ">
+          class=""
+      </button>
+      <button type="button" class="btn btn-block btn-lg">
+          class="btn btn-lg"
+      </button>
+      <hr />
+      <h6>Couleurs</h6>
+      <button type="button" class="btn btn-sm">
+        btn
+      </button>
+      <button type="button" class="btn btn-sm btn-primary">
+        primary
+      </button>
+      <button type="button" class="btn btn-sm btn-secondary ">
+        secondary
+      </button>
+      <button type="button" class="btn btn-sm btn-success">
+        success
+      </button>
+      <button type="button" class="btn btn-sm btn-danger">
+        danger
+      </button>
+      <button type="button" class="btn btn-sm btn-warning">
+        warning
+      </button>
+      <button type="button" class="btn btn-sm btn-info">
+        info
+      </button>
+
+      <hr />
+      <h6>Checkbox</h6>
+      <pre class="card card-block card-header">{{checkModel | json}}</pre>
+      <div class="btn-group">
+        <label class="btn btn-primary" [(ngModel)]="checkModel.left"
+              btnCheckbox tabindex="0" role="button">Left</label>
+        <label class="btn btn-primary" [(ngModel)]="checkModel.middle"
+              btnCheckbox tabindex="0" role="button">Middle</label>
+        <label class="btn btn-primary" [(ngModel)]="checkModel.right"
+              btnCheckbox tabindex="0" role="button">Right</label>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <h6>Boutons radio</h6>
+      <pre class="card card-block card-header">{{radioModel || 'null'}}</pre>
+      <div class="btn-group">
+        <label class="btn btn-primary" [(ngModel)]="radioModel"
+              btnRadio="Left" tabindex="0" role="button">Left</label>
+        <label class="btn btn-primary" [(ngModel)]="radioModel"
+              btnRadio="Middle" tabindex="0" role="button">Middle</label>
+        <label class="btn btn-primary" [(ngModel)]="radioModel"
+              btnRadio="Right" tabindex="0" role="button">Right</label>
+      </div>
+      <div class="btn-group" btnRadioGroup [(ngModel)]="radioModel">
+        <label class="btn btn-success" btnRadio="Left"
+              tabindex="0" role="button">Left</label>
+        <label class="btn btn-success" btnRadio="Middle"
+              tabindex="0" role="button">Middle</label>
+        <label class="btn btn-success" btnRadio="Right"
+              tabindex="0" role="button">Right</label>
+      </div>
+      <hr />
+      <h6>Boutons radio désélectionnables</h6>
+      <pre class="card card-block card-header">{{uncheckableRadioModel || 'null'}}</pre>
+      <div class="btn-group" btnRadioGroup [(ngModel)]="uncheckableRadioModel">
+        <label class="btn btn-info" btnRadio="Left"
+              [uncheckable]="true" [tabindex]=0 role="button">Left</label>
+        <label class="btn btn-info" btnRadio="Middle"
+              [uncheckable]="true" [tabindex]=0 role="button">Middle</label>
+        <label class="btn btn-info" btnRadio="Right"
+              [uncheckable]="true" [tabindex]=0 role="button">Right</label>
+      </div>
+      <hr />
+      <h6>Autre exemples de boutons</h6>
+      D'autres exemples de boutons peuvent être vus <a href="https://valor-software.com/ngx-bootstrap/#/buttons" target="_blank">ici</a>.
+    </div>
+    <div class="col-12 col-md-4">
+      <h5>Menus dropdown</h5>
+      <h6>Basique</h6>
+      Tout &lt;button&gt; peut devenir un élément de menu.<br />
+      <br />
+      <div class="btn-group" dropdown>
+        <button dropdownToggle type="button" class="btn btn-sm btn-primary dropdown-toggle">
+          Button dropdown <span class="caret"></span>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li role="menuitem"><a class="dropdown-item" href="javascript:">Action</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="javascript:">Another action</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="javascript:">Something else here</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem"><a class="dropdown-item" href="javascript:">Separated link</a>
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <h6>Contenu HTML</h6>
+      Dropdown allows you to use any html markup inside of it.<br />
+      <br />
+      <div class="btn-group" dropdown>
+        <button id="button-custom-html" dropdownToggle type="button" class="btn btn-sm btn-danger dropdown-toggle"
+                aria-controls="dropdown-custom-html">
+          Button dropdown <span class="caret"></span>
+        </button>
+        <ul id="dropdown-custom-html" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-custom-html">
+          <li role="menuitem"><a class="dropdown-item" href="javascript:">Action</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="javascript:">Another action</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="javascript:"><span class="badge badge-secondary">Some HTML here</span></a></li>
+        </ul>
+      </div>
+      <hr />
+      <h6>Autre exemples de Dropdown</h6>
+      D'autres exemples de dropdown peuvent être vus <a href="https://valor-software.com/ngx-bootstrap/#/dropdowns" target="_blank">ici</a>.
+    </div>
+  </div>
+</div>

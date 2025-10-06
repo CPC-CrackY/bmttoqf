@@ -1,0 +1,31 @@
+<!--Navbar -->
+<nav id="navbar" *ngIf="!isLoginPage()" class="mb-1 navbar navbar-expand-lg fixed-top d-print-none">
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-controls="navbar-toggler-id"
+    aria-expanded="false" aria-label="Basculer le menu sandwich">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar-toggler-id">
+    <ul id="leftAlign" *ngIf="!!isUserConnected()" class="navbar-nav me-auto ml-auto">
+      <app-navbar-item *ngFor="let link of primaryNavbar.leftAlign" [link]="link"></app-navbar-item>
+    </ul>
+    <ul id="rightAlign" *ngIf="!!isUserConnected() && primaryNavbar.rightAlign"
+      class="navbar-nav nav-flex-icons ms-auto mr-auto">
+      <app-navbar-item *ngFor="let link of primaryNavbar.rightAlign" [link]="link"></app-navbar-item>
+    </ul>
+    <ul id="connectedMenu" *ngIf="!!isUserConnected() && primaryNavbar.connectedMenu" class="navbar-nav nav-flex-icons">
+      <app-connected-menu [parent]="primaryNavbar.connectedMenu"></app-connected-menu>
+    </ul>
+    <ul id="leftAlign" *ngIf="!isUserConnected()" class="navbar-nav nav-flex-icons ms-auto ml-auto">
+    </ul>
+    <ul id="rightAlign" *ngIf="!isUserConnected()" class="navbar-nav nav-flex-icons me-auto mr-auto">
+    </ul>
+    <ul id="disconnectedMenu" *ngIf="!isUserConnected() && primaryNavbar.disconnectedMenu"
+      class="navbar-nav nav-flex-icons">
+      <app-disconnected-menu [parent]="primaryNavbar.disconnectedMenu"></app-disconnected-menu>
+    </ul>
+  </div>
+</nav>
+<div *ngIf="!isLoginPage()" id="banniere" class="banniere d-print-none" ngClass="{{webEnv}}">
+  <img style="height:80px; margin: 0 64px 0 8px;" src="{{logo}}" alt="logo">
+  <span class="bigTitle">{{bigTitle}}</span>
+</div>

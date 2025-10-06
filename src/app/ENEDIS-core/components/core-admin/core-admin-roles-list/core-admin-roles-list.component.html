@@ -1,0 +1,30 @@
+<div class="container-xxl">
+    <div [requiredPermissionToDisplay]="['ROLES','HABILITATIONS']">
+        <h3>Gestion des rôles</h3>
+        <div class="alert alert-info">
+            <p>Seuls les développeurs de l'outil peuvent modifier les rôles car leur gestion passe aussi par la
+                configuration du code source de l'application.</p>
+            <p>Les rôles et périmètres fonctionnent comme ceux de Gardian IDM.<br />
+                La cible est de migrer toute application sous Gardian WebSSO (avec gestion des droits -IDM- ), afin de
+                ne
+                plus utiliser
+                cette fonctionnalité.</p>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table>
+                    <tr>
+                        <th>Libellé</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr *ngFor="let role of roles">
+                        <td>{{role.label}}</td>
+                        <td>{{role.description}}</td>
+                    </tr>
+                </table>
+                <button class="btn btn-primary btn-sm pull-right" (click)="addRole()"
+                    [requiredPermissionToDisplaySilently]="['ROLES']">➕   Ajouter un rôle</button>
+            </div>
+        </div>
+    </div>
+</div>

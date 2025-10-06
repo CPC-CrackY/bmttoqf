@@ -1,0 +1,36 @@
+.metrics-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 200px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 100%;
+    background-color: var(--neutre_75);
+}
+
+.card h3 {
+    position: relative;
+    top: 20px;
+    font-weight: bold;
+    color: var(--bleu_moyen_700);
+}
+
+#cpuChart,
+#memChart,
+#diskChart {
+    height: 300px;
+    padding: 0 10px;
+}
+
+.console {
+    font-family: Consolas, "Courier New", monospace;
+    background-color: black;
+    padding: 3px;
+    color: greenyellow;
+}

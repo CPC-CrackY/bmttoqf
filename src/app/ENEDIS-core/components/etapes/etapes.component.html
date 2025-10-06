@@ -1,0 +1,24 @@
+<div>
+  <div *ngFor="let etape of liste; let index = index; let isLast = last" class="etapes" [ngClass]="etape?.class"
+    [ngStyle]="{'flex-direction':'row'}">
+    <div class="etapes-bloc">
+      <div *ngIf="etape?.index" class="etapes-bloc-num">
+        {{etape.index}}
+      </div>
+      <div *ngIf="!etape?.index" class="etapes-bloc-num">
+        {{index + 1}}
+      </div>
+      <div class="etapes-bloc-fil">
+        <div class="etapes-fil" *ngIf="!isLast"></div>
+      </div>
+    </div>
+    <div class="etapes-contenu">
+      <div *ngIf="etape?.titre" class="etapes-contenu-titre">
+        {{etape.titre}}
+      </div>
+      <div class="etapes-contenu-desc" [innerHTML]="etape?.contenu">
+
+      </div>
+    </div>
+  </div>
+</div>

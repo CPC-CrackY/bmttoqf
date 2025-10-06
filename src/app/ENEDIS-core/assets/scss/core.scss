@@ -1,0 +1,421 @@
+@import '../../../../../node_modules/@swimlane/ngx-datatable/index.scss';
+@import '../../../../../node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss';
+@import '../../../../../node_modules/@swimlane/ngx-datatable/themes/dark.scss';
+@import '../../../../../node_modules/@swimlane/ngx-datatable/themes/material.scss';
+@import '../../../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../../../../node_modules/@ng-select/ng-select/scss/default.theme.scss';
+@import '../../../../../node_modules/bootstrap/dist/css/bootstrap.min';
+@import '../../../../../node_modules/ngx-toastr/toastr';
+
+@import './bootstrap4enedis.scss';
+
+
+body {
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+    -wekbit-user-select: none;
+    user-select: none;
+}
+
+app-root {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#appcontent {
+    background-color: transparent;
+    flex: auto;
+    -wekbit-user-select: text;
+    user-select: text;
+    flex-grow: 1;
+}
+
+#appcontent div.container {
+    background-color: transparent;
+    padding: 50px 0 4rem 0;
+}
+
+app-primary-navbar {
+    background: white;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    margin-top: 550px;
+}
+
+.fa,
+.fas,
+.far,
+.fal,
+.fad {
+    font-family: 'FontAwesome' !important;
+    font-style: normal;
+}
+
+.alert[role=card] input[type=range] {
+    -webkit-appearance: none;
+    /*nécessaire pour Chrome */
+    padding: 0;
+    /* nécessaire pour IE */
+    font: inherit;
+    /* même rendu suivant font document */
+    outline: none;
+    opacity: .5;
+    background: transparent;
+    /* sert pour couleur de fond de la zone de déplacement */
+    box-sizing: border-box;
+    /* même modèle de boîte pour tous */
+    transition: opacity .2s;
+    cursor: pointer;
+}
+
+.alert[role=card] input[type=range]:hover {
+    opacity: 1;
+}
+
+.alert[role=card] input[type=range]::-moz-range-track {
+    border: none;
+    height: 10px;
+    border-radius: 16px;
+}
+
+/* le curseur */
+.alert[role=card] input[type=range]::-moz-range-thumb {
+    width: 1em;
+    height: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    background: currentColor;
+}
+
+/* barre progression avant */
+.alert[role=card] input[type=range]::-moz-range-progress {
+    height: 0;
+}
+
+.alert[role=card] input[type=range] {
+    color: white;
+}
+
+.alert[role=card] input[type=range]::-moz-range-track {
+    background-color: var(--neutre_600);
+}
+
+.alert[role=card] input[type=range]::-moz-range-thumb {
+    border-color: var(--neutre_600);
+}
+
+div.min-height div.alert[role=card] {
+    border: 1px solid var(--neutre_400);
+    background-color: var(--neutre_200);
+}
+
+.alert-info[role=card] input[type=range] {
+    color: white;
+}
+
+.alert-info[role=card] input[type=range]::-moz-range-track {
+    background-color: var(--bleu_moyen_600);
+}
+
+.alert-info[role=card] input[type=range]::-moz-range-thumb {
+    border-color: var(--bleu_moyen_600);
+}
+
+div.min-height div.alert-info[role=card] {
+    border: 1px solid var(--bleu_moyen_400);
+    background-color: var(--bleu_moyen_200);
+}
+
+.alert-success[role=card] input[type=range] {
+    color: white;
+}
+
+.alert-success[role=card] input[type=range]::-moz-range-track {
+    background-color: var(--vert_enedis_400);
+}
+
+.alert-success[role=card] input[type=range]::-moz-range-thumb {
+    border-color: var(--vert_enedis_400);
+}
+
+div.min-height div.alert-success[role=card] {
+    border: 1px solid var(--vert_enedis_400);
+    background-color: var(--vert_enedis_200);
+}
+
+.alert-warning[role=card] input[type=range] {
+    color: white;
+}
+
+.alert-warning[role=card] input[type=range]::-moz-range-track {
+    background-color: var(--orange_500);
+}
+
+.alert-warning[role=card] input[type=range]::-moz-range-thumb {
+    border-color: var(--orange_500);
+}
+
+div.min-height div.alert-warning[role=card] {
+    border: 1px solid var(--orange_400);
+    background-color: var(--orange_200);
+}
+
+.alert-danger[role=card] input[type=range] {
+    color: white;
+}
+
+.alert-danger[role=card] input[type=range]::-moz-range-track {
+    background-color: var(--rouge_400);
+}
+
+.alert-danger[role=card] input[type=range]::-moz-range-thumb {
+    border-color: var(--rouge_400);
+}
+
+div.min-height div.alert-danger[role=card] {
+    border: 1px solid var(--rouge_400);
+    background-color: var(--rouge_200);
+}
+
+.search-datatable {
+    border-bottom: 1px solid #333;
+    font-size: 80%;
+}
+
+.search-datatable>* {
+    border: 0;
+}
+
+a.nav-link {
+    outline: none;
+}
+
+.close span {
+    border: none;
+}
+
+.toast-close-button span {
+    border: none;
+}
+
+nav.navbar-nav .bg-success,
+nav.navbar .nav-item {
+    height: 40px;
+}
+
+li.nav-item.avatar.dropdown a {
+    padding: 4px 8px;
+}
+
+/*
+bootstrap table theme
+*/
+.ngx-datatable * {
+    font-family: 'Enedis', 'Public Sans', Arial, sans-serif;
+    color: var(--neutre_900);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.ngx-datatable {
+    box-shadow: none;
+}
+
+.ngx-datatable.bootstrap .datatable-header {
+    background: transparent;
+    height: unset !important;
+    //line-height: 1rem !important;
+    height: 2rem !important;
+    padding: 0 !important;
+    border-bottom: 1px solid black !important;
+}
+
+datatable-header-cell.datatable-header-cell {
+    padding-left: 0 !important;
+}
+
+.ngx-datatable .datatable-header * {
+    font-weight: 600;
+    bottom: 6px !important;
+}
+
+.ngx-datatable .datatable-header .datatable-header-cell {
+    vertical-align: bottom;
+    padding: 0.75rem;
+    //border-bottom: 1px solid black !important;
+}
+
+.ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {
+    line-height: 24px;
+}
+
+.ngx-datatable .datatable-body .datatable-body-row {
+    vertical-align: top;
+    border-top: none !important;
+    border-bottom: 1px solid var(--neutre_200) !important;
+}
+
+.ngx-datatable .datatable-body .datatable-body-row {
+    background-color: transparent;
+}
+
+.ngx-datatable.table-striped .datatable-body .datatable-body-row.datatable-row-even {
+    background-color: var(--neutre_100);
+}
+
+.ngx-datatable .datatable-body .datatable-body-row:hover,
+.ngx-datatable .datatable-body .datatable-body-row.datatable-row-even:hover {
+    background-color: var(--bleu_enedis_300);
+}
+
+.ngx-datatable .datatable-body .datatable-body-row.active {
+    background-color: var(--bleu_enedis_300);
+    color: #fff;
+}
+
+.ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.ngx-datatable .datatable-body .empty-row {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+}
+
+.ngx-datatable.bootstrap .datatable-footer {
+    background: var(--bleu_enedis_500) !important;
+    margin-top: -1px;
+    overflow: hidden;
+}
+
+.ngx-datatable.bootstrap .datatable-footer * {
+    color: white !important;
+    margin-top: -1px;
+    overflow: hidden;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .page-count {
+    line-height: 50px;
+    height: 50px;
+    padding: 0 1.2rem;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager {
+    margin: 0 10px;
+    vertical-align: top;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li {
+    margin: 10px 0px;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a *,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a * {
+    background-color: var(--bleu_enedis_200);
+    color: black !important;
+    font-weight: 500;
+}
+
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
+    height: 22px;
+    min-width: 24px;
+    line-height: 22px;
+    padding: 0;
+    border-radius: 3px;
+    margin: 0 3px;
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    vertical-align: bottom;
+    color: white;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-left,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-skip,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-prev {
+    line-height: 24px;
+    padding: 0 3px;
+}
+
+.ngx-datatable .datatable-summary-row .datatable-body-row .datatable-body-cell {
+    font-weight: bold;
+}
+
+.ngx-datatable.table-sm * {
+    font-size: 0.8rem;
+}
+
+.ngx-datatable.table-sm .datatable-body-row {
+    height: 28px;
+}
+
+.ngx-datatable.table-sm .datatable-body .datatable-body-row .datatable-body-cell {
+    padding: 0.3rem;
+    height: 1rem;
+}
+
+.ng-select {
+    border: 1px solid #b3c0cb;
+    border-radius: 3px;
+    min-height: 46px;
+}
+
+.ng-select .ng-select-container {
+    border: 0;
+    min-height: 46px;
+}
+
+.ng-select.input-sm,
+.ng-select.input-sm .ng-select-container {
+    min-height: 36px;
+    font-size: 96%;
+}
+
+.ng-select.input-xs,
+.ng-select.input-xs .ng-select-container {
+    min-height: 24px;
+    font-size: 92%;
+}
+
+ng-select.input-xs .ng-dropdown-panel {
+    font-size: 90% !important;
+}
+
+ng-select .ng-dropdown-panel {
+    min-width: 150px !important;
+    width: auto !important;
+}
+
+ng-select .ng-dropdown-panel-items.scroll-host {
+    max-height: 500px !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+    color: var(--neutre_900);
+    background-color: var(--bleu_moyen_300);
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+    color: var(--neutre_900);
+    background-color: var(--bleu_moyen_300);
+}
+
+.no-select {
+    -wekbit-user-select: none;
+    user-select: none,
+}

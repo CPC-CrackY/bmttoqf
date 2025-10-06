@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+      <div class="col-12 col-sm-6 col-md-5 col-xl-4 p-2">
+      <button class="btn btn-sm btn-block btn-info" (click)="showInfo()">Information</button>
+      <button class="btn btn-sm btn-block btn-success" (click)="showSuccess()">Succès</button>
+      <button class="btn btn-sm btn-block btn-warning" (click)="showWarning()">Attention</button>
+      <button class="btn btn-sm btn-block btn-danger" (click)="showDanger()">Danger</button>
+      <br />
+      <button class="btn btn-sm btn-block btn-primary" (click)="showOptions()">Avec options</button>
+    </div>
+    <div class="col-12 col-sm-6 col-md-7 col-xl-8 p-2">
+        <tabset>
+          <tab heading=".ts" style="border: 1px solid #888;">
+            <textarea style="background-color:#eee; font-family:'Courier New', Courier, monospace; border:0; width:100%; height:400px; font-size:80%;" readonly>
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
+@Component({
+  selector: 'app-toastr',
+  templateUrl: './toastr.component.html',
+  styleUrls: ['./toastr.component.scss']
+})
+export class ToastrComponent implements OnInit {
+
+  toastrOptions = {
+    closeButton: true,
+    timeOut: 5000,
+    extendedTimeOut: 5000,
+    enableHtml: true,
+    progressBar: true,
+    // progressAnimation: 'decreasing',
+    positionClass: 'toast-top-right',
+    tapToDismiss: true
+  };
+
+  constructor(private toastr: ToastrService) { }
+
+  showInfo() {
+    this.toastr.info('Ceci est une <b>information</b>.', 'Notification !', this.toastrOptions);
+  }
+  showSuccess() {
+    this.toastr.success('Ceci est une <b>réussite</b>.', 'Notification !', this.toastrOptions);
+  }
+  showWarning() {
+    this.toastr.warning('Ceci est un <b>avertissement</b>.', 'Notification !', this.toastrOptions);
+  }
+  showDanger() {
+    this.toastr.error('Ceci est une <b>erreur ou  un danger</b>.', 'Notification !', this.toastrOptions);
+  }
+  showOptions() {
+    this.toastr.show('Ceci est une <b>erreur ou  un danger</b>.', 'Notification !', {
+      closeButton: true,
+      timeOut: 5000,
+      extendedTimeOut: 5000,
+      enableHtml: true,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      positionClass: 'toast-top-right',
+      tapToDismiss: true
+    });
+  }
+
+  ngOnInit() {
+  }
+
+}                
+            </textarea>
+          </tab>
+          <tab heading=".html" style="border: 1px solid #888;">
+            <textarea style="background-color:#eee; font-family:'Courier New', Courier, monospace; border:0; width:100%; height:400px; font-size:80%;" readonly>
+<button class="btn btn-sm btn-block btn-info" (click)="showInfo()">Information</button>
+<button class="btn btn-sm btn-block btn-success" (click)="showSuccess()">Succès</button>
+<button class="btn btn-sm btn-block btn-warning" (click)="showWarning()">Attention</button>
+<button class="btn btn-sm btn-block btn-danger" (click)="showDanger()">Danger</button>
+<br />
+<button class="btn btn-sm btn-block btn-primary" (click)="showOptions()">Avec options</button>
+            </textarea>
+          </tab>
+        </tabset>
+    </div>
+  </div>
+</div>
+
+<!--
+  <div class="col-12 col-sm-6 col-md-7 col-xl-8 p-2">
+        <tabset>
+          <tab heading=".ts" style="border: 1px solid #888;">
+            <textarea style="background-color:#eee; font-family:'Courier New', Courier, monospace; border:0; width:100%; height:400px; font-size:80%;" readonly>
+
+            </textarea>
+          </tab>
+          <tab heading=".html" style="border: 1px solid #888;">
+            <textarea style="background-color:#eee; font-family:'Courier New', Courier, monospace; border:0; width:100%; height:400px; font-size:80%;" readonly>
+
+            </textarea>
+          </tab>
+        </tabset>
+    </div>
+-->

@@ -1,0 +1,196 @@
+# This file is a template, and might need editing before it works on your project.
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
+# it uses echo commands to simulate the pipeline execution.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+#
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+###################################################################################################################################
+###################################################################################################################################
+
+# Pour valider la syntaxe de ce fichier .gitlab-ci.yml:
+#
+# 1. utiliser le menu Build > Pipeline editor dans Gitlab.
+#
+# OU
+#
+# 2. copier le contenu de ce fichier dans l'outil "CI lint" dispo dans Gitlab.
+# CI lint est accessible via le menu "Build > Pipelines", puis en cliquant
+# sur le bouton "CI lint" en haut à droite.
+
+workflow:
+  # Le paramètre "rules" sert à définir les conditions d'exécution du pipeline Gitlab CI/CD
+  #
+  # https://docs.gitlab.com/ee/ci/yaml/workflow.html
+  # https://docs.gitlab.com/ee/ci/jobs/job_control.html#common-if-clauses-for-rules
+  # https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+  # https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html
+  #
+  # Ici on a configuré le déclenchement du pipeline selon deux conditions:
+  #
+  #   1. Soit il s'agit d'un évènement lié une "merge request" (comme un push sur une branche source d'une merge request ouverte)
+  #   2. Soit il s'agit d'un push sur la branche nommée "dev"
+  #
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || $CI_PIPELINE_SOURCE == 'push' && $CI_COMMIT_BRANCH == "dev"
+
+  auto_cancel:
+    on_new_commit: conservative # Si un nouveau commit est pushé, l'éventuel pipeline déjà en cours d'éxécution est automatiquement stoppé
+    on_job_failure: none # Si un job du pipeline échoue, les autres jobs sont quand-même exécutés
+
+# Liste des "stages", dans l'ordre de leur exécution.
+#
+# Un "stage" peut-être rattaché à un ou plusieurs jobs,
+# pour définir quels jobs le pipeline Gitlab exécutera
+# et dans quel ordre.
+#
+stages:
+  - code-quality
+#  - test
+
+# Variables d'environnements.
+#
+# Les variables contenant des credentials (login/mdp)
+# ne doivent pas être définies ici, mais dans le menu
+# "Settings" > "CI/CD" du projet Gitlab (sous menu "Variables").
+#
+# Les variables dont le nom commence par
+# "KUBERNETES_" correspondent à des paramètres
+# de sizing des pods KUBERNETES.
+#
+# KUBERNETES est l'application en charge de
+# coordonner l'exécution des images docker.
+#
+# Un "pod" est une unité d'exécution de KUBERNETES.
+#
+# https://goconfluence.enedis.fr/pages/viewpage.action?pageId=103253888#UtiliserlesGitlabRunnersmutualis%C3%A9s-Contraintesli%C3%A9es%C3%A0l%27utilisationdeHadock
+#
+# Ici les sizings des pods ont été boostés à leur valeur max
+# pour supporter la charge des tests Playwright.
+#
+# Ces paramètres de sizing vont définir quel(s) runner(s) Gitlab sera sélectionné pour exécuter
+# ce pipeline: si aucun runner correspondant à ces paramètres n'est immédiatement disponible
+# lors de l'initialisation du pipeline, il est possible que cela retarde son lancement
+# (voir même dans les cas "extrêmes": que le lancement du pipeline échoue avec un timeout,
+# faute de runner disponible suffisamment rapidement).
+#
+# variables:
+#   KUBERNETES_CPU_LIMIT: '8'
+#   KUBERNETES_CPU_REQUEST: '2'
+
+#   KUBERNETES_EPHEMERAL_STORAGE_LIMIT: '8Gi'
+#   KUBERNETES_EPHEMERAL_STORAGE_REQUEST: '1Gi'
+
+#   KUBERNETES_MEMORY_LIMIT: '8Gi'
+#   KUBERNETES_MEMORY_REQUEST: '2Gi'
+
+sonarqube-check:
+  stage: code-quality
+
+  image:
+    name: neufhs-docker-releases-local.proxy-repositoi.zca.enedis.fr/sonar-scanner-cli:5.0.1-enedis-1
+    entrypoint: ['']
+
+  variables:
+    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
+    GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
+
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - .sonar/cache
+
+  script:
+    - sonar-scanner
+
+  # Cette directive indique que quelque-soit le résultat du scan sonar, le job sera considéré comme "réussi"
+  #allow_failure: true
+#playwright-e2e-test:
+#  stage: test
+#  rules:
+#    - if: $ENABLE_PLAYWRIGHT == '1'
+
+# Attention à bien sélectionner une version de l'image docker compatible avec les modules NodeJS Playwright utilisés.
+# En cas de problème: consultez les logs du job Gitlab: la lib Playwright NodeJS y inscrira normalement la bonne version de l'image docker à utiliser.
+#
+# https://playwright.dev/docs/docker
+#
+# Les images recommandées sont les images basées sur Ubuntu 22.04 LTS (Jammy Jellyfish), celles dont le tag de version est suffixé par "jammy".
+#
+# Liste de toutes les images docker pour Playwright: https://mcr.microsoft.com/en-us/product/playwright/tags
+#
+# La base URL Artifactory utilisée ci-dessous: "remote-docker-mcr-microsoft.artifactory-principale.enedis.fr", n'est en fait qu'un "proxy" vers les vrais repositories de Microsoft.
+#
+#  image: remote-docker-mcr-microsoft.artifactory-principale.enedis.fr/playwright:v1.43.1-jammy
+
+# Niveau de "Sharding" (répartition des tests PW entre plusieurs jobs Gitlab).
+#
+# Différent de la parallélisation de Playwright lui-même (le nombre de threads définis avec le paramètre "workers" de Playwright).
+#
+# A utiliser pour répartir la charge des tests sur plusieurs jobs/runners Gitlab (uniquement si l'exécution des tests sur un seul runner
+# entraîne des problèmes d'occupation mémoire ou CPU).
+#
+# Une erreur "out of memory" de Docker retournera un code d'erreur "137" visible dans les logs d'exécutions du job.
+#
+# https://playwright.dev/docs/ci#gitlab-ci
+#
+# Pour utiliser le mode "sharding": attention à bien modifier la ligne de commande playwright dans la section
+# "script" ci-dessous (cf. commentaires dans la section "script" du job).
+#
+#parallel: 2
+
+# Sauvegarde dans Gitlab des rapports HTML de Playwright
+#
+# Les fichiers sauvegardés sont accessibles dans l'UI Gitlab:
+# menu "Build" > "Artifacts"
+#
+# https://docs.gitlab.com/ee/ci/yaml/#artifacts
+# https://docs.gitlab.com/ee/api/job_artifacts.html
+#
+#  artifacts:
+#    name: "PW_REPORT__$CI_COMMIT_REF_NAME" # nom de fichier de l'artefact (on utilise une variable d'environnement Gitlab CI "$CI_COMMIT_REF_NAME" qui contient l'id du dernier commit ayant déclenché le pipeline)
+#    expire_in: 1 week  # durée de conservation de l'artefact (le rapport HTML PLaywright)
+#    when: always # le rapport est sauvegardé systématiquement que le job soit en "success" ou "failed"
+#    paths:
+#      - playwright-report/
+
+# Indique que ce job ne dépend pas de la disponibilité
+# d'un artefact particulier pour démarrer
+#
+#  dependencies: []
+
+#
+# Par défaut les tests PW sont lancés à partir d'un serveur
+# web nodeJS local démarré via la commande "ng serve".
+# Les API utilisées sont celles de l'environnement de DEV.
+#
+#  script:
+#    - npm ci
+#    - npx playwright test applistats-base --reporter=line --reporter=html
+
+# Commande à utiliser pour exécuter Playwright en mode "sharding".
+#
+# Remplace la commande de la ligne ci-dessus (qui doit donc être commentée
+# avant d'utiliser la commande ci-dessous).
+#
+# - npx playwright test paco-base --reporter=line --reporter=html --shard=$CI_NODE_INDEX/$CI_NODE_TOTAL
+
+# Invocation d'un script externe pour gestion des rapports Playwright
+#
+# https://docs.gitlab.com/ee/ci/yaml/#after_script
+# https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+#
+# after_script:
+#   - curl --insecure "https://calimectra-dev.appheb.enedis-grdf.fr:19564/develop/API/ci/gitlab-webhook.php?type=pw&job_id=$CI_JOB_ID"
+

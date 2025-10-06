@@ -1,0 +1,34 @@
+input[type='text']{
+    margin: 15px auto; 
+    padding: 8px; 
+    padding-right: 12%; 
+    width: 30%;
+    font-size: 14px;
+    display: block;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #5264ae !important;
+}
+:host .zone-recherche {
+    position: relative;
+}
+:host .zone-recherche .delete {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    // transform-origin: top left;
+    // transform-origin: center;
+}
+:host .zone-recherche .delete button.btn-delete-recherche {
+    padding: 0.5rem;
+    border: none;
+    height: 100%;
+    background-color: transparent !important;
+}
+:host .zone-recherche .delete button.btn-delete-recherche:hover, :host .zone-recherche .delete button.btn-delete-recherche:active{
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    color: #5264ae;
+}
